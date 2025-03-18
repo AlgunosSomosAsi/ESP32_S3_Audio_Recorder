@@ -2,16 +2,16 @@
 
 # *📜 Description*
 This project allows recording audio at **16 bits @ 44.1 kHz**, storing the data as raw values in a `.bin` file (not as a standard audio file).
-It uses an 4-bit SD card in SDIO mode, ESP32 S3 B16R8, and an audio codec (PMOD I2S2 in this project).
+It uses an 4-bit SD card in SDIO mode, ESP32 S3 B16R8, and an audio codec (PMOD I2S2).
 
 ---
 
 # *🛠️ Hardware Requirements*
 
-## *ESP32 S3 B16R8*
+## *ESP32 S3 N16R8*
 - Microcontroller responsible for recording audio data and interfacing with the audio codec and SD card.  
 - Equipped with sufficient serial peripherals to manage I2S in full duplex mode, Master Clock, and the SDIO.
-- 8 MB of RAM allows power efficiency improvements (nnot implemented yet).
+- 8 MB of RAM allows power efficiency improvements (not implemented yet).
 
 <div style="text-align: center;">
   <img src="images/ESP32_S3.jpg" alt="ESP32 S3" width="400"/>
@@ -63,8 +63,10 @@ It uses an 4-bit SD card in SDIO mode, ESP32 S3 B16R8, and an audio codec (PMOD 
 - The I2S driver provided by Espressif Systems is unique and not compatible with other platforms.
 
 # *Arduino IDE setup.*
-  PSRAM enabled: OPI PSRAM.
-  Avoid GPIO 35, 36 and 37 if OPI PSRAM is enabled.
+-  PSRAM enabled: OPI PSRAM.
+-  Avoid using GPIO 35, 36 and 37 if OPI PSRAM is enabled.
+- CPU frequency can be as low as 80 MHz. 
+- At 40 MHz wifi won't connect. I2S will halt the system.
 #
 
 # *Future releases:*
@@ -100,8 +102,7 @@ It uses an 4-bit SD card in SDIO mode, ESP32 S3 B16R8, and an audio codec (PMOD 
 
 ### Pin Assignment Warning
  
-> **WARNING**: All data pins (D0, D1, D2, D3, CMA andn CLK) must be pulled up to 3.3V with an external 10k Ohm resistor! [SD Pull-up Requirements
-](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/sd_pullup_requirements.html)
+> **WARNING**: All data pins (D0, D1, D2, D3, CMA andn CLK) must be pulled up to 3.3V with an external 10k Ohm resistor! [SD Pull-up Requirement](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/sd_pullup_requirements.html)
 
   -   SD MMC library: https://github.com/espressif/arduino-esp32/tree/master/libraries/SD_MMC
 #
