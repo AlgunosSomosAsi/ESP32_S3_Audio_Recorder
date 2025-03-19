@@ -1,14 +1,14 @@
 # 🚀 Audio Recorder with ESP32 S3 N16R8 and SD Card in 4-bit SDIO mode.
 
 ## 📜 *Description*
-This project allows recording audio at **16 bits @ 44.1 kHz**, storing the data as raw values in a `.bin` file (not as a standard audio file).
-It uses a 4-bit SD card in SDIO mode, ESP32 S3 B16R8, and an audio codec (PMOD I2S2).
+This project allows recording audio at 16 bits @ 44.1 kHz, storing the data as raw values in a *.bin* file (not as a standard audio file).
+It uses a SD card in SDIO (4-bit) mode, ESP32 S3 N16R8, and an audio codec (PMOD I2S2).
 
 ## 🛠️ *Hardware Requirements*
 
 ### *ESP32 S3 N16R8*
 - Microcontroller responsible for recording audio data and interfacing with the audio codec and SD card.  
-- Equipped with enough serial peripherals to manage I2S in full duplex mode, Master Clock, and the SDIO.
+- Equipped with enough serial peripherals to manage I2S in full duplex mode (audio loopback used for debugging), I2S Master Clock, and the SDIO.
 - 8 MB of RAM allows power efficiency improvements (not implemented yet).
 
 <div style="text-align: center;">
@@ -40,8 +40,8 @@ It uses a 4-bit SD card in SDIO mode, ESP32 S3 B16R8, and an audio codec (PMOD I
   <p><em>SD Card pinout</em></p>
 </div>
 
-- SD Card speeds are often indicated by logos printed on them.
 - Audio file size can be calculated with [Audio File Size Calculator](https://www.omnicalculator.com/other/audio-file-size).
+- SD Card speeds are often indicated by logos printed on them:
 
 <div style="text-align: center;">
   <a href="https://www.sdcard.org/consumers/about-sd-memory-card-choices/speed-class-standards-for-video-recording/">
@@ -51,7 +51,7 @@ It uses a 4-bit SD card in SDIO mode, ESP32 S3 B16R8, and an audio codec (PMOD I
 </div>
 
 # 💻 *Sketch*
-- The sketch is developed using Arduino IDE, allowing comparison of different MCUs without the need to learn new IDEs for each platform. Currently, only ESP MCUs have been tested because I2S with MCLK is not widely supported on other MCU platforms.
+- The sketch is developed using Arduino IDE, allowing comparison of different MCUs without the need to learn new IDEs for each platform.
 - The I2S driver provided by Espressif Systems is unique and not compatible with other platforms.
 
 ## *Arduino IDE setup.*
@@ -59,6 +59,12 @@ It uses a 4-bit SD card in SDIO mode, ESP32 S3 B16R8, and an audio codec (PMOD I
 -  Avoid using GPIO 35, 36 and 37 if OPI PSRAM is enabled.
 - CPU frequency can be as low as 80 MHz. 
 - At 40 MHz wifi won't connect. I2S will halt the system.
+- 'USB CDC on Boot Enabled' and 'Core Debug Level Error' allows Serial.print to work properly.
+
+<div style="text-align: center;">
+  <img src="images/Arduino_IDE_config.jpg" alt="SD Module" width="400"/>
+  <p><em>Arduino IDE configuration</em></p>
+</div>
 
 
 ## *SD Card*
