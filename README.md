@@ -224,9 +224,9 @@ void UpdateRTC(void)  // Update RTC if wifi is available.
 Default file is:
 ```
 ssid  
-Internet  
+YOUR_SSID  
 password  
-contrasena43211  
+YOUR_PASSWORD
 GMT  
 -3  
 ```
