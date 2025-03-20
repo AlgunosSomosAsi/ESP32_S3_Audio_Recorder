@@ -161,11 +161,7 @@ Buffer sizes used are:
 
   Since this hardware is battery-powered, the SD card should remain off most of the time until the PSRAM buffer is almost full. This is why I2S_BUFFERSIZE needs to be large enough to avoid losing samples while the SD card initializes (which includes power-on and calling SD_MMC.begin(), taking approximately 50 ms).
 
-  Once the SD card is initialized, data is saved in chunks of 3 KB, which provides the fastest data rate on
-  the SD card used.
-
   I2S_BUFFERSIZE is calculated as: 16 * 512 / 44100 / 2 = ~92 ms.
-
 
   Once the SD card is initialized, data is saved in chunks of 3 KB, which provides the fastest data rate for the used SD card.
 
